@@ -3,11 +3,12 @@
 //! One program runs on every switch of the AS. It does the three things the
 //! starter leaves open, and it keeps the usual Gao-Rexford policy.
 //!
-//! Exit. The same choice as the usual nearest-exit rule: shorter AS path,
-//! then anything but the Tier-1, then fewer hops inside the AS. A backup
-//! route stays behind a peer or provider route for the same prefix. Among
-//! backup routes, the exit nearer the block on the neighbor's side wins,
-//! so a backup we sell is carried to the town where that block lives.
+//! Exit. Prefer shorter AS paths, then non-Tier-1 links, then fewer hops
+//! inside our AS and between the handoff and the destination block.
+//! A backup route stays behind a peer or provider route for the same prefix.
+//! For backup traffic, the exit
+//! nearer the block on the neighbor's side wins so a backup we sell is
+//! carried to the town where that block lives.
 //!
 //! Queueing. With no customer, peer, or provider, every external packet
 //! shares the Tier-1 and that link is oversubscribed. Calls and trading
@@ -36,8 +37,8 @@ use std::collections::{BTreeMap, BTreeSet};
 use switch_program_sdk::wire::{self, A4InfoW, A4LinkW, A4RouteW};
 use switch_program_sdk::*;
 
-const PERIOD_NS: u64 = 100_000_000;
-const DEAD_NS: u64 = 450_000_000;
+const PERIOD_NS: u64 = 50_000_000;
+const DEAD_NS: u64 = 200_000_000;
 const Q_HELLO: u16 = 0;
 const Q_CALLS: u16 = 1;
 const Q_TRADING: u16 = 2;
@@ -224,6 +225,8 @@ impl SwitchProgram for Program {
                 out.extend(self.queue_actions());
             }
             for &port in &self.internal {
+                // Give every port a startup grace period, even if its first hello never arrives.
+                self.last_rx.entry(port).or_insert(ev.now_ns);
                 out.push(actions::link_up(port));
             }
         }
@@ -291,7 +294,10 @@ fn exit_cost(r: &A4RouteW, hops: u32) -> u64 {
         // so selling backup actually crosses to the far town.
         return 5_000_000_000 + (r.med as u64) * 1_000 + u64::from(hops);
     }
-    (r.as_path.len() as u64) * 1_000_000 + tier1 * 1_000 + u64::from(hops)
+    // Favor handing off near the destination block to avoid making traffic
+    // cross the neighbor's network. MED is zero on learned routes.
+    let handoff_cost = u64::from(hops) + 2 * u64::from(r.med);
+    (r.as_path.len() as u64) * 1_000_000 + tier1 * 1_000 + handoff_cost
 }
 
 /// Own prefixes this switch can no longer reach. Drop them unless a backup
@@ -368,7 +374,7 @@ fn chosen<'a>(info: &'a A4InfoW, me: u32, down: &BTreeSet<(u32, u16)>, addr: u32
         if r.addr != addr || r.len != len || down.contains(&(r.switch, r.port)) {
             continue;
         }
-        let hops = router::inside(info, me, r.switch, down)?;
+        let Some(hops) = router::inside(info, me, r.switch, down) else { continue };
         let key = (exit_cost(r, hops), r.switch, r.port);
         if best.as_ref().is_none_or(|(c, s, p, _)| key < (*c, *s, *p)) {
             best = Some((key.0, r.switch, r.port, r));
@@ -413,3 +419,39 @@ fn drop_entry(id: u64, addr: u32, len: u8) -> TableEntry {
 
 switch_program!(Program);
 switch_program_sdk::policy_program!(policy::rank, policy::announce);
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn unreachable_advertisement_does_not_hide_a_reachable_exit() {
+        let link = A4LinkW {
+            a: 11,
+            a_port: 2,
+            b: 12,
+            b_port: 3,
+        };
+        let local = A4RouteW {
+            addr: 0x0a03_0000,
+            len: 16,
+            switch: 11,
+            port: 1,
+            rel: wire::A4_PEER,
+            as_path: vec![3],
+            med: 0,
+        };
+        let remote = A4RouteW {
+            switch: 12,
+            ..local.clone()
+        };
+        let info = A4InfoW {
+            internal: vec![link],
+            routes: vec![remote, local.clone()],
+            ..Default::default()
+        };
+        let down = BTreeSet::from([(11, 2), (12, 3)]);
+
+        assert_eq!(chosen(&info, 11, &down, local.addr, local.len), Some(&local));
+    }
+}
