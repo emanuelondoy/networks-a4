@@ -1,0 +1,14 @@
+C:\Users\Owner\Downloads\networkarena-a4\networkarena-a4\target\release\deps\serde-29bd6f5ed5cb4f76.d: C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Users\Owner\Downloads\networkarena-a4\networkarena-a4\target\release\build\serde-c691832448da9f5d\out/private.rs
+
+C:\Users\Owner\Downloads\networkarena-a4\networkarena-a4\target\release\deps\libserde-29bd6f5ed5cb4f76.rlib: C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Users\Owner\Downloads\networkarena-a4\networkarena-a4\target\release\build\serde-c691832448da9f5d\out/private.rs
+
+C:\Users\Owner\Downloads\networkarena-a4\networkarena-a4\target\release\deps\libserde-29bd6f5ed5cb4f76.rmeta: C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Users\Owner\Downloads\networkarena-a4\networkarena-a4\target\release\build\serde-c691832448da9f5d\out/private.rs
+
+C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs:
+C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs:
+C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs:
+C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs:
+C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs:
+C:\Users\Owner\Downloads\networkarena-a4\networkarena-a4\target\release\build\serde-c691832448da9f5d\out/private.rs:
+
+# env-dep:OUT_DIR=C:\\Users\\Owner\\Downloads\\networkarena-a4\\networkarena-a4\\target\\release\\build\\serde-c691832448da9f5d\\out

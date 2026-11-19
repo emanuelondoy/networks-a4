@@ -1,0 +1,8 @@
+C:\Users\Owner\Downloads\networkarena-a4\networkarena-a4\examples\a4_tier1\target\release\deps\unicode_ident-ed817669b5bdddfe.d: C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\unicode-ident-1.0.27\src\lib.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\unicode-ident-1.0.27\src\tables.rs
+
+C:\Users\Owner\Downloads\networkarena-a4\networkarena-a4\examples\a4_tier1\target\release\deps\libunicode_ident-ed817669b5bdddfe.rlib: C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\unicode-ident-1.0.27\src\lib.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\unicode-ident-1.0.27\src\tables.rs
+
+C:\Users\Owner\Downloads\networkarena-a4\networkarena-a4\examples\a4_tier1\target\release\deps\libunicode_ident-ed817669b5bdddfe.rmeta: C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\unicode-ident-1.0.27\src\lib.rs C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\unicode-ident-1.0.27\src\tables.rs
+
+C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\unicode-ident-1.0.27\src\lib.rs:
+C:\Users\Owner\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\unicode-ident-1.0.27\src\tables.rs:

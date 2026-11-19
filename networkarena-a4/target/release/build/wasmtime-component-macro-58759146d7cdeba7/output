@@ -1,0 +1,2 @@
+cargo:rerun-if-changed=build.rs
+cargo:rustc-env=DEBUG_OUTPUT_DIR=C:\Users\Owner\Downloads\networkarena-a4\networkarena-a4\target\release\build\wasmtime-component-macro-58759146d7cdeba7\out
